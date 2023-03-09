@@ -53,9 +53,9 @@ class _ChatScreenState extends State<ChatScreen> {
         elevation: 2,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Image.asset(AssetsManager.openaiLogo),
+          child: Image.asset(AssetsManager.nflLogo),
         ),
-        title: const Text("ChatGPT"),
+        title: const Text("Insider Chatbot"),
         actions: [
           IconButton(
             onPressed: () async {
