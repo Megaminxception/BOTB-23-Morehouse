@@ -42,6 +42,8 @@ dependencies:
   animated_text_kit: ^4.2.2
   flutter_svg: ^2.0.3
   video_player: ^2.5.3
+  audio_wave: ^0.1.5
+  audioplayers: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +76,13 @@ flutter:
     - assets/images/QR.png
     - assets/images/chat_bubble.png
     - assets/images/Voice_Ai.png
+    - assets/images/bosa.jpeg
+    - assets/images/kittle.jpeg
+    - assets/images/shanahan.jpeg
+    - assets/images/dak.jpg
+    - assets/audio/shanahan.m4a
+    - assets/audio/kittle.m4a
+    - assets/audio/bosa.m4a
     - assets/videos/Dak_Prescott.mp4
 
   # An image asset can refer to one or more resolution-specific "variants", see

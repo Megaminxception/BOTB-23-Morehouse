@@ -26,7 +26,7 @@ class ChatWidget extends StatelessWidget {
               children: [
                 Image.asset(
                   chatIndex == 0
-                      ? AssetsManager.nflLogo
+                      ? AssetsManager.chatter
                       : AssetsManager.nflLogo,
                   height: 30,
                   width: 30,
