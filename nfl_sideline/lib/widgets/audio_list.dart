@@ -70,6 +70,31 @@ class _AudioListState extends State<AudioList> {
                   },
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  elevation: 10,
+                  shadowColor: Theme.of(context).secondaryHeaderColor,
+                  child: ListTile(
+                    trailing: const Padding(
+                      padding: EdgeInsets.only(right: 5),
+                    ),
+                    tileColor: Theme.of(context).focusColor,
+                    contentPadding: const EdgeInsets.all(10),
+                    title: const Text("Insight",
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold)),
+                    subtitle: const Text(
+                        "Dak Prescott averages 9 yards per attempt on 2nd down.",
+                        style: TextStyle(color: Colors.white, fontSize: 18)),
+                  ),
+                ),
+              ),
             ],
           )
         : ListView(

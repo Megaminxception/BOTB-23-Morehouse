@@ -36,69 +36,76 @@ class _SidelineScreenState extends State<SidelineScreen> {
     final Color selectedColor = Theme.of(context).secondaryHeaderColor;
     final Color unselectedColor = Theme.of(context).primaryColor;
 
-    return _selectedIndex == -1
-        ? SidelineAudioScreen(
+    if (_selectedIndex == -1) {
+      return SidelineAudioScreen(
+        selectedIndex: 0,
+      );
+    } else if (_selectedIndex == -2) {
+      return Container(
+          height: MediaQuery.of(context).size.height / 2.3,
+          child: ChatScreen(
             selectedIndex: 0,
-          )
-        : Container(
-            child: Wrap(
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 15.0, right: 15.0, top: 10),
-                  child: SingleChildScrollView(
-                    physics: NeverScrollableScrollPhysics(),
-                    child: Row(
-                      children: [
-                        Image.asset('assets/images/QR.png'),
-                        const Spacer(),
-                        ElevatedButton(
-                          style: ButtonStyle(
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
+          ));
+    } else {
+      return Container(
+        child: Wrap(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 10),
+              child: SingleChildScrollView(
+                physics: NeverScrollableScrollPhysics(),
+                child: Row(
+                  children: [
+                    Image.asset('assets/images/QR.png'),
+                    const Spacer(),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(50))),
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Theme.of(context).focusColor),
-                              elevation:
-                                  MaterialStateProperty.all<double>(10.0),
-                              shadowColor: MaterialStateProperty.all<Color>(
-                                  Theme.of(context).secondaryHeaderColor),
-                              foregroundColor: MaterialStateProperty.all<Color>(
-                                  unselectedColor)),
-                          onPressed: () {
-                            setState(() {
-                              _selectedIndex = -1;
-                            });
-                          },
-                          child: const Text(
-                            "Join the sidelines",
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        ),
-                        const Spacer(),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const ChatScreen()));
-                          },
-                          child: Image.asset('assets/images/chat_bubble.png'),
-                        ),
-                      ],
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Theme.of(context).focusColor),
+                          elevation: MaterialStateProperty.all<double>(10.0),
+                          shadowColor: MaterialStateProperty.all<Color>(
+                              Theme.of(context).secondaryHeaderColor),
+                          foregroundColor: MaterialStateProperty.all<Color>(
+                              unselectedColor)),
+                      onPressed: () {
+                        setState(() {
+                          _selectedIndex = -1;
+                        });
+                      },
+                      child: const Text(
+                        "Join the sidelines",
+                        style: TextStyle(fontSize: 18),
+                      ),
                     ),
-                  ),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = -2;
+                        });
+                      },
+                      child: Image.asset('assets/images/chat_bubble.png'),
+                    ),
+                  ],
                 ),
-                Container(
-                  height: MediaQuery.of(context).size.height / 3.8,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        bottom: 8.0, top: 15.0, left: 8.0, right: 8.0),
-                    child: InsightsList(),
-                  ),
-                ),
-                Center(child: VoiceAssistant())
-              ],
+              ),
             ),
-          );
+            Container(
+              height: MediaQuery.of(context).size.height / 3.8,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    bottom: 8.0, top: 15.0, left: 8.0, right: 8.0),
+                child: InsightsList(),
+              ),
+            ),
+            Center(child: VoiceAssistant())
+          ],
+        ),
+      );
+    }
   }
 }

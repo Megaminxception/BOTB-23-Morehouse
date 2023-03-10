@@ -18,7 +18,16 @@ class BaseScreen extends StatefulWidget {
 
 class _BaseScreenState extends State<BaseScreen> {
   int __selectedIndex = 2;
-  final pages = [ChatScreen(), ChatScreen(), LiveChat(), SidelineScreen()];
+  final pages = [
+    ChatScreen(
+      selectedIndex: 0,
+    ),
+    ChatScreen(
+      selectedIndex: 0,
+    ),
+    LiveChat(),
+    SidelineScreen()
+  ];
   late VideoPlayerController _controler;
   late Future<void> _init;
 
@@ -203,9 +212,7 @@ class _BaseScreenState extends State<BaseScreen> {
                         child: IconButton(
                       iconSize: 45,
                       icon: Icon(Icons.timer_rounded),
-                      color: __selectedIndex == 1
-                          ? selectedColor
-                          : unselectedColor,
+                      color: unselectedColor,
                       isSelected: true,
                       onPressed: () {
                         setState(() {});
@@ -216,9 +223,7 @@ class _BaseScreenState extends State<BaseScreen> {
                         child: IconButton(
                       iconSize: 45,
                       icon: Icon(Icons.add),
-                      color: __selectedIndex == 2
-                          ? selectedColor
-                          : unselectedColor,
+                      color: selectedColor,
                       isSelected: true,
                       onPressed: () {
                         setState(() {});
@@ -229,9 +234,7 @@ class _BaseScreenState extends State<BaseScreen> {
                         child: IconButton(
                       iconSize: 45,
                       icon: Icon(Icons.person),
-                      color: __selectedIndex == 3
-                          ? selectedColor
-                          : unselectedColor,
+                      color: unselectedColor,
                       isSelected: true,
                       onPressed: () {
                         setState(() {});
