@@ -1,5 +1,7 @@
 // Base screen for tab based navigation within NFL plus
 
+import 'package:nfl_sideline/screens/chat_screen.dart';
+import 'package:nfl_sideline/screens/comment_screen.dart';
 import 'package:nfl_sideline/screens/sideline_screen.dart';
 import 'package:nfl_sideline/widgets/tabbedMenu.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +17,8 @@ class BaseScreen extends StatefulWidget {
 }
 
 class _BaseScreenState extends State<BaseScreen> {
-  int _selectedIndex = 2;
-  final pages = [SidelineScreen()];
+  int __selectedIndex = 2;
+  final pages = [ChatScreen(), ChatScreen(), LiveChat(), SidelineScreen()];
   late VideoPlayerController _controler;
   late Future<void> _init;
 
@@ -44,7 +46,7 @@ class _BaseScreenState extends State<BaseScreen> {
           IconButton(
             iconSize: 45,
             icon: Icon(Icons.circle),
-            color: _selectedIndex == 3 ? selectedColor : unselectedColor,
+            color: Colors.white,
             isSelected: true,
             onPressed: () {
               setState(() {});
@@ -79,9 +81,95 @@ class _BaseScreenState extends State<BaseScreen> {
             ),
           ),
           Container(
-            child: TabbedMenu(selectedIndex: 2),
+            color: Theme.of(context).focusColor,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // Text Buttons for each tab, the button is underlined when selected
+                TextButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  child: Text(
+                    'Games',
+                    style: TextStyle(
+                      decoration: __selectedIndex == 0
+                          ? TextDecoration.underline
+                          : TextDecoration.none,
+                      color: __selectedIndex == 0
+                          ? Theme.of(context).secondaryHeaderColor
+                          : Theme.of(context).hintColor,
+                      fontWeight: __selectedIndex == 0
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  child: Text(
+                    'Shows',
+                    style: TextStyle(
+                      decoration: __selectedIndex == 1
+                          ? TextDecoration.underline
+                          : TextDecoration.none,
+                      color: __selectedIndex == 1
+                          ? Theme.of(context).secondaryHeaderColor
+                          : Theme.of(context).hintColor,
+                      fontWeight: __selectedIndex == 1
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      __selectedIndex = 2;
+                    });
+                  },
+                  child: Text(
+                    'Chat',
+                    style: TextStyle(
+                      decoration: __selectedIndex == 2
+                          ? TextDecoration.underline
+                          : TextDecoration.none,
+                      color: __selectedIndex == 2
+                          ? Theme.of(context).secondaryHeaderColor
+                          : Theme.of(context).hintColor,
+                      fontWeight: __selectedIndex == 2
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      __selectedIndex = 3;
+                    });
+                  },
+                  child: Text(
+                    'Sideline',
+                    style: TextStyle(
+                      decoration: __selectedIndex == 3
+                          ? TextDecoration.underline
+                          : TextDecoration.none,
+                      color: __selectedIndex == 3
+                          ? Theme.of(context).secondaryHeaderColor
+                          : Theme.of(context).hintColor,
+                      fontWeight: __selectedIndex == 3
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-          const SidelineScreen(),
+          pages[__selectedIndex],
         ],
       ),
       bottomNavigationBar: Container(
@@ -103,8 +191,9 @@ class _BaseScreenState extends State<BaseScreen> {
                         child: IconButton(
                       iconSize: 45,
                       icon: Icon(Icons.home),
-                      color:
-                          _selectedIndex == 0 ? selectedColor : unselectedColor,
+                      color: __selectedIndex == 0
+                          ? selectedColor
+                          : unselectedColor,
                       onPressed: () {
                         setState(() {});
                         print('Navigate to home page');
@@ -114,8 +203,9 @@ class _BaseScreenState extends State<BaseScreen> {
                         child: IconButton(
                       iconSize: 45,
                       icon: Icon(Icons.timer_rounded),
-                      color:
-                          _selectedIndex == 1 ? selectedColor : unselectedColor,
+                      color: __selectedIndex == 1
+                          ? selectedColor
+                          : unselectedColor,
                       isSelected: true,
                       onPressed: () {
                         setState(() {});
@@ -126,8 +216,9 @@ class _BaseScreenState extends State<BaseScreen> {
                         child: IconButton(
                       iconSize: 45,
                       icon: Icon(Icons.add),
-                      color:
-                          _selectedIndex == 2 ? selectedColor : unselectedColor,
+                      color: __selectedIndex == 2
+                          ? selectedColor
+                          : unselectedColor,
                       isSelected: true,
                       onPressed: () {
                         setState(() {});
@@ -138,8 +229,9 @@ class _BaseScreenState extends State<BaseScreen> {
                         child: IconButton(
                       iconSize: 45,
                       icon: Icon(Icons.person),
-                      color:
-                          _selectedIndex == 3 ? selectedColor : unselectedColor,
+                      color: __selectedIndex == 3
+                          ? selectedColor
+                          : unselectedColor,
                       isSelected: true,
                       onPressed: () {
                         setState(() {});

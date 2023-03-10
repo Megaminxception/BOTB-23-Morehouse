@@ -85,9 +85,6 @@ class _TabbedMenuState extends State<TabbedMenu> {
               setState(() {
                 widget.selectedIndex = 3;
               });
-              print("Selected Sideline tab");
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const SidelineScreen()));
             },
             child: Text(
               'Sideline',
