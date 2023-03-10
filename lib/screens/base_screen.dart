@@ -1,5 +1,6 @@
 // Base screen for tab based navigation within NFL plus
 
+import 'package:chatgpt_course/screens/sideline_audio_screen.dart';
 import 'package:chatgpt_course/widgets/tabbedMenu.dart';
 import 'package:flutter/material.dart';
 import 'package:chatgpt_course/services/assets_manager.dart';
@@ -16,17 +17,6 @@ class BaseScreen extends StatefulWidget {
 class _BaseScreenState extends State<BaseScreen> {
   int _selectedIndex = 2;
   final pages = [];
-  late VideoPlayerController _controler;
-
-  @override
-  void initState() {
-    super.initState();
-    _controler = VideoPlayerController.network(
-        'https://www.youtube.com/watch?v=2y2fi-Qkn0g')
-      ..initialize().then((_) {
-        setState(() {});
-      });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,19 +43,11 @@ class _BaseScreenState extends State<BaseScreen> {
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Container(
-              child: _controler.value.isInitialized
-                  ? VideoPlayer(_controler)
-                  : CircularProgressIndicator(
-                      color: Theme.of(context).secondaryHeaderColor,
-                      backgroundColor: Theme.of(context).focusColor,
-                    ),
-            ),
-          ),
           Container(
             child: TabbedMenu(selectedIndex: 2),
+          ),
+          SidelineAudioScreen(
+            selectedIndex: 1,
           )
         ],
       ),
