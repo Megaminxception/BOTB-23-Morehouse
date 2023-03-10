@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:nfl_sideline/constants/constants.dart';
 import 'package:nfl_sideline/models/chat_model.dart';
 import 'package:nfl_sideline/providers/chats_provider.dart';
+import 'package:nfl_sideline/screens/sideline_screen.dart';
 import 'package:nfl_sideline/services/api_service.dart';
 import 'package:nfl_sideline/services/services.dart';
 import 'package:nfl_sideline/widgets/chat_widget.dart';
@@ -15,7 +16,8 @@ import '../services/assets_manager.dart';
 import '../widgets/text_widget.dart';
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({super.key});
+  int selectedIndex;
+  ChatScreen({super.key, required this.selectedIndex});
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -48,87 +50,87 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     final modelsProvider = Provider.of<ModelsProvider>(context);
     final chatProvider = Provider.of<ChatProvider>(context);
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 2,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset(AssetsManager.nflLogo),
-        ),
-        title: const Text("NFL Sideline Chatbot"),
-        actions: [
-          IconButton(
-            onPressed: () async {
-              await Services.showModalSheet(context: context);
-            },
-            icon: const Icon(Icons.more_vert_rounded, color: Colors.white),
-          ),
-        ],
-      ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Flexible(
-              child: ListView.builder(
-                  controller: _listScrollController,
-                  itemCount: chatProvider.getChatList.length, //chatList.length,
-                  itemBuilder: (context, index) {
-                    return ChatWidget(
-                      msg: chatProvider
-                          .getChatList[index].msg, // chatList[index].msg,
-                      chatIndex: chatProvider.getChatList[index]
-                          .chatIndex, //chatList[index].chatIndex,
-                    );
-                  }),
-            ),
-            if (_isTyping) ...[
-              const SpinKitThreeBounce(
-                color: Colors.white,
-                size: 18,
-              ),
-            ],
-            const SizedBox(
-              height: 15,
-            ),
-            Material(
-              color: cardColor,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        focusNode: focusNode,
-                        style: const TextStyle(color: Colors.white),
-                        controller: textEditingController,
-                        onSubmitted: (value) async {
-                          await sendMessageFCT(
-                              modelsProvider: modelsProvider,
-                              chatProvider: chatProvider);
-                        },
-                        decoration: const InputDecoration.collapsed(
-                            hintText: "Begin typing here",
-                            hintStyle: TextStyle(color: Colors.grey)),
-                      ),
+    return widget.selectedIndex == -1
+        ? SidelineScreen()
+        : SafeArea(
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: IconButton(
+                      color: Colors.white,
+                      icon: Icon(Icons.arrow_back),
+                      onPressed: () {
+                        setState(() {
+                          widget.selectedIndex = -1;
+                        });
+                      },
                     ),
-                    IconButton(
-                        onPressed: () async {
-                          await sendMessageFCT(
-                              modelsProvider: modelsProvider,
-                              chatProvider: chatProvider);
-                        },
-                        icon: const Icon(
-                          Icons.send,
-                          color: Colors.white,
-                        ))
-                  ],
+                  ),
                 ),
-              ),
+                Flexible(
+                  child: ListView.builder(
+                      controller: _listScrollController,
+                      itemCount:
+                          chatProvider.getChatList.length, //chatList.length,
+                      itemBuilder: (context, index) {
+                        return ChatWidget(
+                          msg: chatProvider
+                              .getChatList[index].msg, // chatList[index].msg,
+                          chatIndex: chatProvider.getChatList[index]
+                              .chatIndex, //chatList[index].chatIndex,
+                        );
+                      }),
+                ),
+                if (_isTyping) ...[
+                  const SpinKitThreeBounce(
+                    color: Colors.white,
+                    size: 18,
+                  ),
+                ],
+                const SizedBox(
+                  height: 15,
+                ),
+                Material(
+                  color: cardColor,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            focusNode: focusNode,
+                            style: const TextStyle(color: Colors.white),
+                            controller: textEditingController,
+                            onSubmitted: (value) async {
+                              await sendMessageFCT(
+                                  modelsProvider: modelsProvider,
+                                  chatProvider: chatProvider);
+                            },
+                            decoration: const InputDecoration.collapsed(
+                                hintText: "Begin typing here",
+                                hintStyle: TextStyle(color: Colors.grey)),
+                          ),
+                        ),
+                        IconButton(
+                            onPressed: () async {
+                              await sendMessageFCT(
+                                  modelsProvider: modelsProvider,
+                                  chatProvider: chatProvider);
+                            },
+                            icon: const Icon(
+                              Icons.send,
+                              color: Colors.white,
+                            ))
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    );
+          );
   }
 
   void scrollListToEND() {
