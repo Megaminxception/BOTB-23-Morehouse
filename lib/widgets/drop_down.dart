@@ -1,6 +1,6 @@
-import 'package:chatgpt_course/providers/models_provider.dart';
-import 'package:chatgpt_course/services/api_service.dart';
-import 'package:chatgpt_course/widgets/text_widget.dart';
+import 'package:nfl_sideline/providers/models_provider.dart';
+import 'package:nfl_sideline/services/api_service.dart';
+import 'package:nfl_sideline/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';

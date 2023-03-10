@@ -1,4 +1,4 @@
-import 'package:chatgpt_course/providers/models_provider.dart';
+import 'package:nfl_sideline/providers/models_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'NFL Sideline Chatbot',
+        title: 'Insider Chatbot',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             scaffoldBackgroundColor: scaffoldBackgroundColor,

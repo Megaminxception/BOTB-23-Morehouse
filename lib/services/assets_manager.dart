@@ -5,4 +5,7 @@ class AssetsManager {
   static String openaiLogo = "$imagePath/openai_logo.jpg";
   static String nflLogo = "$imagePath/logo3.png";
   static String chatter = "$imagePath/chatUser.png";
+
+
+  
 }

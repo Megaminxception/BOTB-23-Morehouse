@@ -1,11 +1,11 @@
 import 'dart:developer';
 
-import 'package:chatgpt_course/constants/constants.dart';
-import 'package:chatgpt_course/models/chat_model.dart';
-import 'package:chatgpt_course/providers/chats_provider.dart';
-import 'package:chatgpt_course/services/api_service.dart';
-import 'package:chatgpt_course/services/services.dart';
-import 'package:chatgpt_course/widgets/chat_widget.dart';
+import 'package:nfl_sideline/constants/constants.dart';
+import 'package:nfl_sideline/models/chat_model.dart';
+import 'package:nfl_sideline/providers/chats_provider.dart';
+import 'package:nfl_sideline/services/api_service.dart';
+import 'package:nfl_sideline/services/services.dart';
+import 'package:nfl_sideline/widgets/chat_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
@@ -55,7 +55,7 @@ class _ChatScreenState extends State<ChatScreen> {
           padding: const EdgeInsets.all(8.0),
           child: Image.asset(AssetsManager.nflLogo),
         ),
-        title: const Text("NFL Sideline Chatbot"),
+        title: const Text("Insider Chatbot"),
         actions: [
           IconButton(
             onPressed: () async {
@@ -107,7 +107,7 @@ class _ChatScreenState extends State<ChatScreen> {
                               chatProvider: chatProvider);
                         },
                         decoration: const InputDecoration.collapsed(
-                            hintText: "Begin typing here",
+                            hintText: "How can I help you",
                             hintStyle: TextStyle(color: Colors.grey)),
                       ),
                     ),
