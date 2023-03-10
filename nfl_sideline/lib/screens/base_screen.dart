@@ -16,7 +16,7 @@ class BaseScreen extends StatefulWidget {
 
 class _BaseScreenState extends State<BaseScreen> {
   int _selectedIndex = 2;
-  final pages = [];
+  final pages = [SidelineScreen()];
   late VideoPlayerController _controler;
   late Future<void> _init;
 
