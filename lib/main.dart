@@ -1,4 +1,5 @@
 import 'package:chatgpt_course/providers/models_provider.dart';
+import 'package:chatgpt_course/screens/base_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,12 +30,33 @@ class MyApp extends StatelessWidget {
         title: 'NFL Sideline Chatbot',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            scaffoldBackgroundColor: scaffoldBackgroundColor,
+            primaryColor: Colors.white,
+            secondaryHeaderColor: boldBlue,
+            focusColor: notBlackButBlack,
+            scaffoldBackgroundColor: Colors.black,
+            hintColor: greyStone,
             appBarTheme: AppBarTheme(
               color: cardColor,
             )),
-        home: const ChatScreen(),
+        home: const BaseScreen(),
       ),
     );
   }
 }
+
+MaterialColor boldBlue = MaterialColor(0xFF0050FE, color);
+MaterialColor notBlackButBlack = MaterialColor(0xFF131313, color);
+MaterialColor greyStone = MaterialColor(0xFF4A4A4B, color);
+
+Map<int, Color> color = {
+  50: Color.fromRGBO(136, 14, 79, .1),
+  100: Color.fromRGBO(136, 14, 79, .2),
+  200: Color.fromRGBO(136, 14, 79, .3),
+  300: Color.fromRGBO(136, 14, 79, .4),
+  400: Color.fromRGBO(136, 14, 79, .5),
+  500: Color.fromRGBO(136, 14, 79, .6),
+  600: Color.fromRGBO(136, 14, 79, .7),
+  700: Color.fromRGBO(136, 14, 79, .8),
+  800: Color.fromRGBO(136, 14, 79, .9),
+  900: Color.fromRGBO(136, 14, 79, 1),
+};
